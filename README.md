@@ -1,5 +1,7 @@
 # Uncodixify
 
+Attribution: this package builds on the original Uncodixfy work by [cyxzdev](https://github.com/cyxzdev) at [cyxzdev/Uncodixfy](https://github.com/cyxzdev/Uncodixfy).
+
 Portable skill package for constraining React and Tailwind UI away from generic AI-dashboard styling.
 
 This package is designed to be copied between projects as a single folder. It includes:
