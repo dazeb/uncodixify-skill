@@ -1,6 +1,13 @@
 ---
 name: uncodixify
-description: Use when building or refactoring React and Tailwind UI that keeps drifting into generic AI-dashboard styling and needs a repeatable visual audit loop.
+description: >-
+  Use when React or Tailwind components look too generic, dashboard-like, or
+  AI-template-ish (gradients, glassmorphism, oversized radii, purple accents).
+  Audits component styling against strict design constraints, flags banned CSS
+  patterns, and enforces a dark restrained aesthetic via an automated validator
+  that exits 0 on pass. Trigger phrases include UI looks generic, too much like
+  a dashboard, fix the styling, Tailwind design system, component looks like a
+  template, clean up the CSS.
 ---
 
 # Uncodixify
@@ -38,6 +45,28 @@ Before running the audit loop, keep these rules intact:
 4. Repeat until the command exits with code `0`.
 
 The wrapper script resolves the package paths for you. Do not assume the current working directory is the package directory.
+
+### Example: Validator Failure and Fix
+
+Banned pattern (fails validation):
+```tsx
+// BEFORE — violates gradient and glassmorphism rules
+<div className="bg-gradient-to-br from-purple-900 to-indigo-800 backdrop-blur-md rounded-2xl shadow-2xl">
+```
+
+Compliant replacement (passes validation):
+```tsx
+// AFTER — restrained dark surface, small radius, no gradient
+<div className="bg-zinc-950 rounded-sm border border-white/10">
+```
+
+Typical validator output on failure:
+```
+FAIL src/components/Card.tsx
+  [banned-gradient] bg-gradient-to-br — gradients are not allowed
+  [banned-radius]   rounded-2xl — use rounded-sm or rounded-md
+Exit code: 1
+```
 
 ## Eval Iterations
 
